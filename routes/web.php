@@ -17,7 +17,26 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/GetToken', 'Controller@GetToken')->name('GetToken');
+
+    Route::group(['prefix' => 'mahasiswa'], function() {
+        ;
+        Route::get('/getMahasiswa', 'MahasiswaController@getMahasiswa')->name('getMahasiswa');
+        Route::get('/getBiodataMahasiswa', 'MahasiswaController@getBiodataMahasiswa')->name('getBiodataMahasiswa');
+        Route::get('/insertBiodataMahasiswa', 'MahasiswaController@insertBiodataMahasiswa')->name('insertBiodataMahasiswa');
+        Route::get('/DeleteBiodataMahasiswa/{id}', 'MahasiswaController@DeleteBiodataMahasiswa')->name('DeleteBiodataMahasiswa');
+    });
+    Route::group(['prefix' => 'umum'], function() {
+        Route::get('/GetToken', 'GeneralController@GetToken')->name('GetToken');
+        Route::get('/GetJenjangPendidikan', 'GeneralController@GetJenjangPendidikan')->name('GetJenjangPendidikan');
+        Route::get('/GetPenghasilan/{id}', 'GeneralController@GetPenghasilan')->name('GetPenghasilan');
+        Route::get('/GetWilayah/{id}', 'GeneralController@GetWilayah')->name('GetWilayah');
+        Route::get('/GetJenisTinggal', 'GeneralController@GetJenisTinggal')->name('GetJenisTinggal');
+        Route::get('/GetAlatTransportasi', 'GeneralController@GetAlatTransportasi')->name('GetAlatTransportasi');
+        Route::get('/GetNegara', 'GeneralController@GetNegara')->name('GetNegara');
+        Route::get('/GetAgama/{id}', 'GeneralController@GetAgama')->name('GetAgama');
+
+    });
+
 
     Route::get('/home', 'HomeController@index')->name('home');
 });

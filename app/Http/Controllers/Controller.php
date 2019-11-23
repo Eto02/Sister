@@ -14,22 +14,6 @@ use Illuminate\Support\Facades\Auth;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function GetToken(Request $request)
-    {
 
-        $myVar = $request->session()->get('key');
-        $response = Curl::to('http://localhost:8082/ws/live2.php')
-       ->withData([
-           'act'=>'GetToken',
-           'username'=>Auth::user()->name,
-           'password'=>$myVar,
-       ] )
-       ->asJson(true)
-       ->post()['data'];
-       return json_encode($response['token']);
-    }
-    public function JenjangPendidikan()
-    {
-        // code...
-    }
+    
 }
